@@ -44,9 +44,10 @@ public class SincronizacaoReceitaProcessor implements ItemProcessor<RegistroSinc
                     saldo.doubleValue(),
                     registroSincronizacao.getStatus()
             );
+            log.info("registroSincronizacao: {}, result: {}", registroSincronizacao, result);
             return registroRelatorioConverter.convert(registroSincronizacao, result);
         } catch (Exception e) {
-            log.info(String.format("Ocorreu um erro ao realizar a sincronização do registro %s.", registroSincronizacao), e);
+            log.error(String.format("Ocorreu um erro ao realizar a sincronização do registro %s.", registroSincronizacao), e);
             return registroRelatorioConverter.convert(registroSincronizacao, Boolean.FALSE);
         }
     }
